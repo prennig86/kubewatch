@@ -63,7 +63,7 @@ func (s *Webex) Init(c *config.Config) error {
 // Handle handles the notification.
 func (s *Webex) Handle(e event.Event) {
 	for i := range s.Skip {
-		if s.Skip[i].Namespace == e.Namespace && s.Skip[i].Kind == e.Kind {
+		if s.Skip[i].Namespace == e.Namespace && (s.Skip[i].Kind == e.Kind || s.Skip[i].Kind == "*") {
 			logrus.Printf("%s messages skipped for namespace: %s",e.Kind, e.Namespace)
             return
         }
