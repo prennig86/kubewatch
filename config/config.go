@@ -134,8 +134,10 @@ type Webex struct {
 	Token string `json:"token"`
 	// Room name.
 	Room string `json:"room"`
-	// URL of the webex server.
-	Url string `json:"url"`
+	// Notification label for cominications.
+	NotificationLabel string `json:"notificationlabel"`
+	// CSV List of Namespaces to skip
+	SkipNamespaces string `json:"skipnamespaces"`
 }
 
 // Mattermost contains mattermost configuration

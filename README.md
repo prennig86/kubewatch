@@ -477,7 +477,8 @@ handler:
   webex:
     token: ""
     room: ""
-    url: ""
+    notificationlabel: ""
+    skipnamespaces: ""
   mattermost:
     channel: ""
     url: ""

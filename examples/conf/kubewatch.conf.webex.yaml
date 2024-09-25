@@ -3,7 +3,8 @@ handler:
     enabled: true
     token: token
     room: room_id
-    url: https://webexapis.com/v1/messages
+    notificationlabel: ProvaLabelVsCode
+    skipnamespaces: namespace,namespacetoskip
 resource:
   deployment: true
   replicationcontroller: false
