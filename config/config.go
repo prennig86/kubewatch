@@ -136,8 +136,15 @@ type Webex struct {
 	Room string `json:"room"`
 	// Notification label for cominications.
 	NotificationLabel string `json:"notificationlabel"`
-	// CSV List of Namespaces to skip
-	SkipNamespaces string `json:"skipnamespaces"`
+	// List of object to skip by namespace
+	Skip []SkipItem `json:"skip"`
+}
+
+type SkipItem struct {
+	// Namespace to skip.
+	Namespace string `json:"namespace"`
+	// Kind to skip.
+	Kind string `json:"kind"`
 }
 
 // Mattermost contains mattermost configuration

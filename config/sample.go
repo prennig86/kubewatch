@@ -21,8 +21,14 @@ handler:
     token: ""
     # Room name.
     room: ""
-    # URL of the webex server.
-    url: ""
+    # Label used to identify the cluster where the notifications are sent.
+    notificationlabel: 'ProvaLabelVsCode'
+    # List of objects to skip notifications for certain namespaces and kinds.
+    skip:
+      - namespace: ""
+        kind: ""
+      - namespace: ""
+        kind: ""
   mattermost:
     room: ""
     url: ""

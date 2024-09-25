@@ -478,7 +478,11 @@ handler:
     token: ""
     room: ""
     notificationlabel: ""
-    skipnamespaces: ""
+    skip:
+      - namespace: ""
+        kind: ""
+      - namespace: ""
+        kind: ""
   mattermost:
     channel: ""
     url: ""

@@ -4,7 +4,11 @@ handler:
     token: token
     room: room_id
     notificationlabel: ProvaLabelVsCode
-    skipnamespaces: namespace,namespacetoskip
+    skip:
+      - namespace: testNamespacetoSkip
+        kind: ConfigMap
+      - namespace: AnotherTestNamespacetoSkip
+        kind: Deployment
 resource:
   deployment: true
   replicationcontroller: false
