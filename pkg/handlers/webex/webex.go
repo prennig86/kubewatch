@@ -31,7 +31,7 @@ type Webex struct {
 	Token 				string
 	Room  				string
 	NotificationLabel   string
-	Skip 				[]config.SkipItem
+	Notificationlist 	[]config.NotificationItem
 }
 
 // Init prepares Webex configuration
@@ -39,7 +39,7 @@ func (s *Webex) Init(c *config.Config) error {
 	notificationlabel := c.Handler.Webex.NotificationLabel
 	room := c.Handler.Webex.Room
 	token := c.Handler.Webex.Token
-	skip := c.Handler.Webex.Skip
+	notificationlist := c.Handler.Webex.Notificationlist
 
 	if token == "" {
 		token = os.Getenv("WEBEX_ACCESS_TOKEN")
@@ -56,32 +56,30 @@ func (s *Webex) Init(c *config.Config) error {
 	s.Token = token
 	s.Room = room
 	s.NotificationLabel = notificationlabel
-	s.Skip = skip
+	s.Notificationlist = notificationlist
 	return checkMissingWebexVars(s)
 }
 
 // Handle handles the notification.
 func (s *Webex) Handle(e event.Event) {
-	for i := range s.Skip {
-		if s.Skip[i].Namespace == e.Namespace && (s.Skip[i].Kind == e.Kind || s.Skip[i].Kind == "*") {
-			logrus.Printf("%s messages skipped for namespace: %s",e.Kind, e.Namespace)
-            return
-        }
+	for i := range s.Notificationlist {
+		if s.Notificationlist[i].Namespace == e.Namespace && (s.Notificationlist[i].Kind == e.Kind || s.Notificationlist[i].Kind == "*") {
+			client := webex.NewClient()
+			client.SetAuthToken(s.Token)
+			message := &webex.MessageCreateRequest{
+				RoomID: s.Room,
+				Text:   "From " + s.NotificationLabel + ": " + e.Message(),
+			}
+			_, response, err := client.Messages.CreateMessage(message)
+			if err != nil {
+				fmt.Println("Error sending message:", err)
+				return
+			}
+			logrus.Printf("Message sent: Return Code %d", response.StatusCode())
+			logrus.Printf("Message successfully sent to room %s", s.Room)
+		}
     }
-	client := webex.NewClient()
-	client.SetAuthToken(s.Token)
-	message := &webex.MessageCreateRequest{
-		RoomID: s.Room,
-		Text:   "From " + s.NotificationLabel + ": " + e.Message(),
-	}
-	_, response, err := client.Messages.CreateMessage(message)
-	if err != nil {
-		fmt.Println("Error sending message:", err)
-		return
-	}
-	logrus.Printf("Message sent: Return Code %d", response.StatusCode())
-	logrus.Printf("Message successfully sent to room %s", s.Room)
-
+	logrus.Printf("%s messages skipped for namespace: %s",e.Kind, e.Namespace)
 }
 
 func checkMissingWebexVars(s *Webex) error {

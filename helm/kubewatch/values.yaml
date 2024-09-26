@@ -123,7 +123,7 @@ webex:
   room: ""
   token: ""
   notificationlabel: ""
-  skipnamespaces: ""
+  notificationlist: []
 ## @param mattermost.enabled Enable Mattermost notifications
 ## @param mattermost.channel Mattermost channel to notify
 ## @param mattermost.url Mattermost URL

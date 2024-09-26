@@ -136,14 +136,14 @@ type Webex struct {
 	Room string `json:"room"`
 	// Notification label for cominications.
 	NotificationLabel string `json:"notificationlabel"`
-	// List of object to skip by namespace
-	Skip []SkipItem `json:"skip"`
+	// List of object to notify by namespace
+	Notificationlist []NotificationItem `json:"notificationlist"`
 }
 
-type SkipItem struct {
-	// Namespace to skip.
+type NotificationItem struct {
+	// Namespace to notify.
 	Namespace string `json:"namespace"`
-	// Kind to skip.
+	// Kind to notify.
 	Kind string `json:"kind"`
 }
 

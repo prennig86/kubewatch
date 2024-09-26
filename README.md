@@ -478,7 +478,7 @@ handler:
     token: ""
     room: ""
     notificationlabel: ""
-    skip:
+    notificationlist:
       - namespace: ""
         kind: ""
       - namespace: ""

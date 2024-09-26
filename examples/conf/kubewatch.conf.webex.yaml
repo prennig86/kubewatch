@@ -4,10 +4,10 @@ handler:
     token: token
     room: room_id
     notificationlabel: ProvaLabelVsCode
-    skip:
-      - namespace: testNamespacetoSkip
-        kind: ConfigMap
-      - namespace: AnotherTestNamespacetoSkip
+    notificationlist:
+      - namespace: testNamespace
+        kind: "*"
+      - namespace: AnotherTestNamespace
         kind: Deployment
 resource:
   deployment: true

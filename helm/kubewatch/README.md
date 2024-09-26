@@ -88,9 +88,9 @@ The command removes all the Kubernetes components associated with the chart and 
 | `webex.room`                             | Webex room to notify                                                             | `""`                   |
 | `webex.token`                            | Webex token                                                                      | `""`                   |
 | `webex.notificationlabel`                | Webex Notification Label                                                         | `""`                   |
-| `webex.skip`                             | Webex List of objects to skip  by namespaces                                     | `""`                   |
-| `webex.skip.namespace`                   | Webex namespace to skip                                                          | `""`                   |
-| `webex.skip.kind`                        | Webex kind to skip                                                               | `""`                   |
+| `webex.notificationlist`                 | Webex List of objects to notify by namespaces and kind                           | `""`                   |
+| `webex.notificationlist.namespace`       | Webex namespace to notify                                                        | `""`                   |
+| `webex.notificationlist.kind`            | Webex kind to notify                                                             | `""`                   |
 | `mattermost.enabled`                     | Enable Mattermost notifications                                                  | `false`                |
 | `mattermost.channel`                     | Mattermost channel to notify                                                     | `""`                   |
 | `mattermost.url`                         | Mattermost URL                                                                   | `""`                   |
