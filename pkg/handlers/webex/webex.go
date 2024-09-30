@@ -77,6 +77,9 @@ func (s *Webex) Handle(e event.Event) {
 			}
 			logrus.Printf("Message sent: Return Code %d", response.StatusCode())
 			logrus.Printf("Message successfully sent to room %s", s.Room)
+			// Log for Elasticsearch
+			logrus.WithField("Obj", e.Obj).WithField("OldObj", e.OldObj).WithField("verb", e.Reason).WithField("objectRef.name", e.Name).WithField("objectRef.namespace", e.Namespace).WithField("event.status", e.Status).WithField("event.host", e.Host).WithField("requestObject.Kind", e.Kind).WithField("requestObject.apiVersion", e.ApiVersion).WithField("requestObject.component", e.Component).Info(e.Message())
+			return
 		}
     }
 	logrus.Printf("%s messages skipped for namespace: %s",e.Kind, e.Namespace)
